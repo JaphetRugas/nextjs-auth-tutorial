@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project README
 
-## Getting Started
+This repository contains a simple Next.js project utilizing NextAuth for authentication, with various authentication methods implemented including Client-Side Authentication, Server-Side Authentication, and Route-Based Authentication using next-auth/middleware.
 
-First, run the development server:
+## Project Structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+src/
+│
+├── app/
+│   ├── api/
+│   │   ├── auth/
+│   │   │   ├── [...nextauth]/
+│   │   │   │   ├── options.ts
+│   │   │   │   └── route.ts
+│   │   │   └── middleware.ts
+│   │   └── ...other API routes
+│   │
+│   ├── client/
+│   │   └── page.tsx
+│   │
+│   ├── components/
+│   │   ├── NavBar.tsx
+│   │   └── UserCard.tsx
+│   │
+│   ├── context/
+│   │   └── AuthProvider.tsx
+│   │
+│   ├── extra/
+│   │   └── page.tsx
+│   │
+│   ├── server/
+│   │   └── page.tsx
+│   │
+│   └── page.tsx
+│
+└── middleware.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Components
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **API**: Contains authentication related API routes and middleware.
+- **Client**: Client-side components and pages.
+- **Components**: Reusable UI components such as NavBar and UserCard.
+- **Context**: Contains AuthProvider component for managing authentication context.
+- **Extra**: Extra page for demonstration purposes.
+- **Server**: Server-side pages for server-rendered authentication.
+- **Page**: Main entry point of the application.
+- **Middleware**: Middleware configuration for route-based authentication.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Authentication Methods
 
-## Learn More
+### Client-Side Authentication (Home Component)
 
-To learn more about Next.js, take a look at the following resources:
+The Home component (`app/page.tsx`) demonstrates client-side authentication using NextAuth's `getServerSession` function.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Server-Side Authentication (ServerPage Component)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The ServerPage component (`app/server/page.tsx`) showcases server-side authentication using NextAuth's `getServerSession` function.
 
-## Deploy on Vercel
+### Route-Based Authentication (next-auth/middleware)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Authentication is applied to specific routes using `next-auth/middleware`. Middleware configuration is provided in `middleware.ts`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Configuration
+
+Ensure to set up the following environment variables:
+
+- `NEXTAUTH_SECRET`: Secret key for NextAuth.
+- `GITHUB_SECRET`: GitHub client secret.
+- `GITHUB_ID`: GitHub client ID.
+
+## Usage
+
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Set up environment variables as mentioned above.
+4. Run the project using `npm run dev`.
+
+## Additional Notes
+
+- Middleware is configured to apply NextAuth only to selected routes (`/extra`, `/dashboard`). You can adjust the `config` in `middleware.ts` to fit your route requirements.
+
+For more details on NextAuth configuration and usage, refer to the [NextAuth documentation](https://next-auth.js.org/).
+
+Happy coding! 🚀
